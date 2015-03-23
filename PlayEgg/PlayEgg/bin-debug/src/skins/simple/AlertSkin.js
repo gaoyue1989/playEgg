@@ -89,3 +89,4 @@ var skins;
         AlertSkin.prototype.__class__ = "skins.simple.AlertSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
+//# sourceMappingURL=AlertSkin.js.map

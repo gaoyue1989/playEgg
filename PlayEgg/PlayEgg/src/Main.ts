@@ -25,7 +25,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-class Main extends egret.DisplayObjectContainer {
+class Main extends egret.DisplayObjectContainer
+{
 
     /**
      * 加载进度界面
@@ -33,12 +34,14 @@ class Main extends egret.DisplayObjectContainer {
      */
     private loadingView: LoadingUI;
 
-    public constructor() {
+    public constructor()
+    {
         super();
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
 
-    private onAddToStage(event: egret.Event) {
+    private onAddToStage(event: egret.Event)
+    {
         //inject the custom material parser
         //注入自定义的素材解析器
         egret.Injector.mapClass("egret.gui.IAssetAdapter", AssetAdapter);
@@ -58,7 +61,8 @@ class Main extends egret.DisplayObjectContainer {
      * 配置文件加载完成,开始预加载preload资源组。
      * Loading of configuration file is complete, start to pre-load the preload resource group
      */
-    private onConfigComplete(event: RES.ResourceEvent): void {
+    private onConfigComplete(event: RES.ResourceEvent): void
+    {
         RES.removeEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
         RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
         RES.addEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
@@ -69,8 +73,10 @@ class Main extends egret.DisplayObjectContainer {
      * preload资源组加载完成
      * preload resource group is loaded
      */
-    private onResourceLoadComplete(event: RES.ResourceEvent): void {
-        if (event.groupName == "preload") {
+    private onResourceLoadComplete(event: RES.ResourceEvent): void
+    {
+        if (event.groupName == "preload")
+        {
             this.stage.removeChild(this.loadingView);
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
@@ -82,7 +88,8 @@ class Main extends egret.DisplayObjectContainer {
     * 资源组加载出错
      * Resource group loading failed
     */
-    private onResourceLoadError(event: RES.ResourceEvent): void {
+    private onResourceLoadError(event: RES.ResourceEvent): void
+    {
         //TODO
         console.warn("Group:" + event.groupName + " has failed to load");
         //忽略加载失败的项目
@@ -93,8 +100,10 @@ class Main extends egret.DisplayObjectContainer {
      * preload资源组加载进度
      * loading process of preload resource
      */
-    private onResourceProgress(event: RES.ResourceEvent): void {
-        if (event.groupName == "preload") {
+    private onResourceProgress(event: RES.ResourceEvent): void
+    {
+        if (event.groupName == "preload")
+        {
             this.loadingView.setProgress(event.itemsLoaded, event.itemsTotal);
         }
     }
@@ -106,7 +115,8 @@ class Main extends egret.DisplayObjectContainer {
      * 创建场景界面
      * Create scene interface
      */
-    private createScene(): void {
+    private createScene(): void
+    {
 
         //游戏场景层，游戏场景相关内容可以放在这里面。
         //Game scene layer, the game content related to the scene can be placed inside this layer.
@@ -131,7 +141,8 @@ class Main extends egret.DisplayObjectContainer {
         this.guiLayer.addElement(button);
     }
 
-    private onButtonClick(event: egret.TouchEvent): void {
+    private onButtonClick(event: egret.TouchEvent): void
+    {
         egret.gui.Alert.show("Message", "Title");
     }
 }

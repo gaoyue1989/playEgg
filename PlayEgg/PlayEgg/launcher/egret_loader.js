@@ -25,25 +25,28 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-egret_h5.startGame = function () {
-    var  context = egret.MainContext.instance;
+egret_h5.startGame = function ()
+{
+    var context = egret.MainContext.instance;
     context.touchContext = new egret.HTML5TouchContext();
     context.deviceContext = new egret.HTML5DeviceContext();
     context.netContext = new egret.HTML5NetContext();
 
-    egret.StageDelegate.getInstance().setDesignSize(480, 800);
+    egret.StageDelegate.getInstance().setDesignSize(800, 480);
     context.stage = new egret.Stage();
-    var scaleMode =  egret.MainContext.deviceType == egret.MainContext.DEVICE_MOBILE ? egret.StageScaleMode.SHOW_ALL : egret.StageScaleMode.NO_SCALE;
+    var scaleMode = egret.MainContext.deviceType == egret.MainContext.DEVICE_MOBILE ? egret.StageScaleMode.SHOW_ALL : egret.StageScaleMode.NO_SCALE;
     context.stage.scaleMode = scaleMode;
 
     //WebGL is a Egret's beta property. It's off by default.
     //WebGL是egret的Beta特性，默认关闭
     var rendererType = 0;
-    if (rendererType == 1) {// egret.WebGLUtils.checkCanUseWebGL()) {
+    if (rendererType == 1)
+    {// egret.WebGLUtils.checkCanUseWebGL()) {
         console.log("Use WebGL mode");
         context.rendererContext = new egret.WebGLRenderer();
     }
-    else {
+    else
+    {
         context.rendererContext = new egret.HTML5CanvasRenderer();
     }
 
@@ -51,31 +54,42 @@ egret_h5.startGame = function () {
     context.run();
 
     var rootClass;
-    if(document_class){
+    if (document_class)
+    {
         rootClass = egret.getDefinitionByName(document_class);
     }
-    if(rootClass) {
+    if (rootClass)
+    {
         var rootContainer = new rootClass();
-        if(rootContainer instanceof egret.DisplayObjectContainer){
+        if (rootContainer instanceof egret.DisplayObjectContainer)
+        {
+            //rootContainer.rotation = 90;
+            //rootContainer.x = 640;
+          
             context.stage.addChild(rootContainer);
         }
-        else{
+        else
+        {
             throw new Error("Document Class must be the subclass to egret.DisplayObjectContainer!");
         }
     }
-    else{
+    else
+    {
         throw new Error("Document Class is not found！");
     }
 
     //处理屏幕大小改变
     //implement for screen size change
     var resizeTimer = null;
-    var doResize = function () {
+    var doResize = function ()
+    {
         context.stage.changeSize();
         resizeTimer = null;
     };
-    window.onresize = function () {
-        if (resizeTimer == null) {
+    window.onresize = function ()
+    {
+        if (resizeTimer == null)
+        {
             resizeTimer = setTimeout(doResize, 300);
         }
     };

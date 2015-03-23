@@ -51,3 +51,4 @@ var skins;
         TreeSkin.prototype.__class__ = "skins.simple.TreeSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
+//# sourceMappingURL=TreeSkin.js.map
