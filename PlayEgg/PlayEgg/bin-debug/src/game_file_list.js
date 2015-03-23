@@ -3,6 +3,7 @@ var game_file_list = [
 	"skins/simple/TreeDisclosureButtonSkin.js",
 	"skins/simple/VScrollBarThumbSkin.js",
 	"AssetAdapter.js",
+	"EggSprite.js",
 	"LoadingUI.js",
 	"skins/simple/CloseButtonSkin.js",
 	"skins/simple/DropDownListItemRendererSkin.js",

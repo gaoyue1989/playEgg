@@ -3,6 +3,7 @@
 	"skins\\simple\\TreeDisclosureButtonSkin.exml",
 	"skins\\simple\\VScrollBarThumbSkin.exml",
 	"AssetAdapter.ts",
+	"EggSprite.ts",
 	"LoadingUI.ts",
 	"skins\\simple\\CloseButtonSkin.exml",
 	"skins\\simple\\DropDownListItemRendererSkin.exml",

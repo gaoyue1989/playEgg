@@ -134,17 +134,32 @@ class Main extends egret.DisplayObjectContainer
         var button: egret.gui.Button = new egret.gui.Button();
         button.horizontalCenter = 0;
         button.verticalCenter = 0;
-        button.label = "click";
+        button.label = "开始游戏";
         button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
         //在GUI范围内一律使用addElement等方法替代addChild等方法。
         //Within GUI scope, addChild methods should be replaced by addElement methods.
         this.guiLayer.addElement(button);
     }
 
+
+
+
     private onButtonClick(event: egret.TouchEvent): void
     {
-        egret.gui.Alert.show("Message", "Title");
+        //游戏开始事件
+        var btn: egret.gui.Button = event.target;
+        btn.visible = false;
+
+        var egg: EggSprite = new EggSprite();
+        this.addChild(egg);
+        egg.tagetPoint = {x: 
+        300, y:
+        300
+    };
+        egg.eggTween(egg);
     }
+
+
 }
 
 

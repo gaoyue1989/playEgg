@@ -115,14 +115,20 @@ var Main = (function (_super) {
         var button = new egret.gui.Button();
         button.horizontalCenter = 0;
         button.verticalCenter = 0;
-        button.label = "click";
+        button.label = "开始游戏";
         button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
         //在GUI范围内一律使用addElement等方法替代addChild等方法。
         //Within GUI scope, addChild methods should be replaced by addElement methods.
         this.guiLayer.addElement(button);
     };
     Main.prototype.onButtonClick = function (event) {
-        egret.gui.Alert.show("Message", "Title");
+        //游戏开始事件
+        var btn = event.target;
+        btn.visible = false;
+        var egg = new EggSprite();
+        this.addChild(egg);
+        egg.tagetPoint = { x: 300, y: 300 };
+        egg.eggTween(egg);
     };
     return Main;
 })(egret.DisplayObjectContainer);
