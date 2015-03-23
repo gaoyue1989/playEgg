@@ -142,8 +142,11 @@ class Main extends egret.DisplayObjectContainer
     }
 
 
-
-
+    private p1: Point = { x: 100, y: 300};
+    private p2: Point = { x: 300, y: 0 };
+    private p3: Point = { x: 300, y: 300 };
+    private p4: Point = { x: 500, y: 600 };
+    private ball: EggSprite;
     private onButtonClick(event: egret.TouchEvent): void
     {
         //游戏开始事件
@@ -152,11 +155,35 @@ class Main extends egret.DisplayObjectContainer
 
         var egg: EggSprite = new EggSprite();
         this.addChild(egg);
+        this.ball = egg;
         egg.tagetPoint = {x: 
-        300, y:
-        300
-    };
-        egg.eggTween(egg);
+        100, y:
+        100
+        };
+        //this.p1.x = 100
+        //this.p1.y = 100
+        //this.p2.x = 300
+        //this.p2.y = 600
+        //this.p3.x = 500
+        //this.p3.y = 100
+        //this.p4.x = 700
+        //this.p4.y = 600
+        egret.Tween.get(this).to({ factor: 1 }, 7000)
+       // egg.eggTween(egg);
+    }
+    public get factor(): number {
+        return 0;
+    }
+
+    ///二次贝塞尔曲线
+    public set factor(value: number) {
+        this.ball.x = (1 - value) * (1 - value) * this.p1.x + 2 * value * (1 - value) * this.p2.x + value * value * this.p3.x;
+        this.ball.y = (1 - value) * (1 - value) * this.p1.y + 2 * value * (1 - value) * this.p2.y + value * value * this.p3.y;
+    }
+    ///三次贝塞尔曲线
+    public set factor1(value: number) {
+        this.ball.x = (1 - value) * (1 - value) * (1 - value) * this.p1.x + 3 * value * (1 - value) * (1 - value) * this.p2.x + 2 * value * value * (1 - value) * this.p3.x + value * value * value * this.p4.x;
+        this.ball.y = (1 - value) * (1 - value) * (1 - value) * this.p1.y + 3 * value * (1 - value) * (1 - value) * this.p2.y + 2 * value * value * (1 - value) * this.p3.y + value * value * value * this.p4.y;
     }
 
 
