@@ -52,3 +52,4 @@ var skins;
         VSliderSkin.prototype.__class__ = "skins.simple.VSliderSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
+//# sourceMappingURL=VSliderSkin.js.map

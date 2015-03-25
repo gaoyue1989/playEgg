@@ -42,3 +42,4 @@ var skins;
         ScrollerSkin.prototype.__class__ = "skins.simple.ScrollerSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
+//# sourceMappingURL=ScrollerSkin.js.map

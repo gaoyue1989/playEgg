@@ -122,14 +122,14 @@ var Main = (function (_super) {
         this.guiLayer.addElement(button);
         // 测试使用物理引擎 P2
         //创建world
+        egret.Profiler.getInstance().run();
         var world = new p2.World();
-        world.sleepMode = p2.World.BODY_SLEEPING;
-        ////创建plane
-        var planeShape = new p2.Plane();
-        var planeBody = new p2.Body();
-        planeBody.addShape(planeShape);
-        planeBody.displays = [];
-        world.addBody(planeBody);
+        //////创建plane
+        //var planeShape: p2.Plane = new p2.Plane();
+        //var planeBody: p2.Body = new p2.Body();
+        //planeBody.addShape(planeShape);
+        //planeBody.displays = [];
+        //world.addBody(planeBody);
     };
     Main.prototype.onButtonClick = function (event) {
         //游戏开始事件
@@ -139,3 +139,4 @@ var Main = (function (_super) {
     return Main;
 })(egret.DisplayObjectContainer);
 Main.prototype.__class__ = "Main";
+//# sourceMappingURL=Main.js.map

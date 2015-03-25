@@ -25,6 +25,7 @@
     <Content Include="bin-debug\src\game_file_list.js" />
     <Content Include="bin-debug\src\LoadingUI.js" />
     <Content Include="bin-debug\src\Main.js" />
+    <Content Include="bin-debug\src\p2\p2.min.js" />
     <Content Include="bin-debug\src\skins\simple\AlertSkin.js" />
     <Content Include="bin-debug\src\skins\simple\ButtonSkin.js" />
     <Content Include="bin-debug\src\skins\simple\CheckBoxSkin.js" />

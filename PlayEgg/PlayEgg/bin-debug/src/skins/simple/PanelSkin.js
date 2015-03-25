@@ -63,3 +63,4 @@ var skins;
         PanelSkin.prototype.__class__ = "skins.simple.PanelSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
+//# sourceMappingURL=PanelSkin.js.map

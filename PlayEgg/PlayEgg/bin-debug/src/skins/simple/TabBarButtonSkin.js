@@ -65,3 +65,4 @@ var skins;
         TabBarButtonSkin.prototype.__class__ = "skins.simple.TabBarButtonSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
+//# sourceMappingURL=TabBarButtonSkin.js.map

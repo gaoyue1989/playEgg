@@ -57,3 +57,4 @@ var skins;
         ItemRendererSkin.prototype.__class__ = "skins.simple.ItemRendererSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
+//# sourceMappingURL=ItemRendererSkin.js.map

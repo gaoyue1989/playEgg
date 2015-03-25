@@ -145,15 +145,18 @@ class Main extends egret.DisplayObjectContainer
 
         // 测试使用物理引擎 P2
         //创建world
-        var world: p2.World = new p2.World();
-        world.sleepMode = p2.World.BODY_SLEEPING;
 
-        ////创建plane
-        var planeShape: p2.Plane = new p2.Plane();
-        var planeBody: p2.Body = new p2.Body();
-        planeBody.addShape(planeShape);
-        planeBody.displays = [];
-        world.addBody(planeBody);
+        egret.Profiler.getInstance().run();
+
+        var world: p2.World = new p2.World();
+       
+
+        //////创建plane
+        //var planeShape: p2.Plane = new p2.Plane();
+        //var planeBody: p2.Body = new p2.Body();
+        //planeBody.addShape(planeShape);
+        //planeBody.displays = [];
+        //world.addBody(planeBody);
     }
 
 
