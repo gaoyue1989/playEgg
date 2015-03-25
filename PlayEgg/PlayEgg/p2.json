@@ -1,7 +1,7 @@
 {
-    "name": "physics",
+    "name": "p2",
     "dependence": ["core"],
-    "source":"src/p2/",
+    "source":"./p2/",
     "file_list": [
         "p2.min.js",
         "p2.d.ts"

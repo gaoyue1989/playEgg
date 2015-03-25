@@ -79,6 +79,7 @@
 		"egret/tween/Tween.js",
 		"egret/tween/Ease.js",
 		"egret/media/Sound.js",
-		"jslib/NumberUtils.js"
+        "jslib/NumberUtils.js",
+        "egret/p2/p2.min.js"
 	]
 }

@@ -129,10 +129,13 @@ var Main = (function (_super) {
         //游戏开始事件
         var btn = event.target;
         btn.visible = false;
-        var egg = new EggSprite();
-        this.addChild(egg);
-        this.ball = egg;
-        egg.tagetPoint = { x: 100, y: 100 };
+        //var egg: EggSprite = new EggSprite();
+        //this.addChild(egg);
+        //this.ball = egg;
+        //egg.tagetPoint = {x: 
+        //100, y:
+        //100
+        //};
         //this.p1.x = 100
         //this.p1.y = 100
         //this.p2.x = 300
@@ -141,8 +144,18 @@ var Main = (function (_super) {
         //this.p3.y = 100
         //this.p4.x = 700
         //this.p4.y = 600
-        egret.Tween.get(this).to({ factor: 1 }, 7000);
+        //egret.Tween.get(this).to({ factor: 1 }, 7000);
         // egg.eggTween(egg);
+        // 测试使用物理引擎 P2
+        //创建world
+        var world = new p2.World();
+        world.sleepMode = p2.World.BODY_SLEEPING;
+        ////创建plane
+        var planeShape = new p2.Plane();
+        var planeBody = new p2.Body();
+        planeBody.addShape(planeShape);
+        planeBody.displays = [];
+        world.addBody(planeBody);
     };
     Object.defineProperty(Main.prototype, "factor", {
         get: function () {

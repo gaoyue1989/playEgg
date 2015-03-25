@@ -12,9 +12,8 @@
         },
         {
 
-            "name": "physics",
+           "name": "p2",
 			"path": "."
-            
         }
     ],
     "native": {

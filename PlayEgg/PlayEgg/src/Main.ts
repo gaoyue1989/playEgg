@@ -25,6 +25,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
+
 class Main extends egret.DisplayObjectContainer
 {
 
@@ -153,13 +155,13 @@ class Main extends egret.DisplayObjectContainer
         var btn: egret.gui.Button = event.target;
         btn.visible = false;
 
-        var egg: EggSprite = new EggSprite();
-        this.addChild(egg);
-        this.ball = egg;
-        egg.tagetPoint = {x: 
-        100, y:
-        100
-        };
+        //var egg: EggSprite = new EggSprite();
+        //this.addChild(egg);
+        //this.ball = egg;
+        //egg.tagetPoint = {x: 
+        //100, y:
+        //100
+        //};
         //this.p1.x = 100
         //this.p1.y = 100
         //this.p2.x = 300
@@ -168,8 +170,23 @@ class Main extends egret.DisplayObjectContainer
         //this.p3.y = 100
         //this.p4.x = 700
         //this.p4.y = 600
-        egret.Tween.get(this).to({ factor: 1 }, 7000);
+        //egret.Tween.get(this).to({ factor: 1 }, 7000);
         // egg.eggTween(egg);
+
+        // 测试使用物理引擎 P2
+
+        //创建world
+        var world: p2.World = new p2.World();
+        world.sleepMode = p2.World.BODY_SLEEPING;
+
+        ////创建plane
+        var planeShape: p2.Plane = new p2.Plane();
+        var planeBody: p2.Body = new p2.Body();
+        planeBody.addShape(planeShape);
+        planeBody.displays = [];
+        world.addBody(planeBody);
+
+
     }
     public get factor(): number {
         return 0;
