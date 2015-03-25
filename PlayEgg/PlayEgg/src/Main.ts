@@ -168,8 +168,8 @@ class Main extends egret.DisplayObjectContainer
         //this.p3.y = 100
         //this.p4.x = 700
         //this.p4.y = 600
-        egret.Tween.get(this).to({ factor: 1 }, 7000)
-       // egg.eggTween(egg);
+        egret.Tween.get(this).to({ factor: 1 }, 7000);
+        // egg.eggTween(egg);
     }
     public get factor(): number {
         return 0;

@@ -34,6 +34,10 @@ var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
         _super.call(this);
+        this.p1 = { x: 100, y: 300 };
+        this.p2 = { x: 300, y: 0 };
+        this.p3 = { x: 300, y: 300 };
+        this.p4 = { x: 500, y: 600 };
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
     Main.prototype.onAddToStage = function (event) {
@@ -127,9 +131,40 @@ var Main = (function (_super) {
         btn.visible = false;
         var egg = new EggSprite();
         this.addChild(egg);
-        egg.tagetPoint = { x: 300, y: 300 };
-        egg.eggTween(egg);
+        this.ball = egg;
+        egg.tagetPoint = { x: 100, y: 100 };
+        //this.p1.x = 100
+        //this.p1.y = 100
+        //this.p2.x = 300
+        //this.p2.y = 600
+        //this.p3.x = 500
+        //this.p3.y = 100
+        //this.p4.x = 700
+        //this.p4.y = 600
+        egret.Tween.get(this).to({ factor: 1 }, 7000);
+        // egg.eggTween(egg);
     };
+    Object.defineProperty(Main.prototype, "factor", {
+        get: function () {
+            return 0;
+        },
+        ///二次贝塞尔曲线
+        set: function (value) {
+            this.ball.x = (1 - value) * (1 - value) * this.p1.x + 2 * value * (1 - value) * this.p2.x + value * value * this.p3.x;
+            this.ball.y = (1 - value) * (1 - value) * this.p1.y + 2 * value * (1 - value) * this.p2.y + value * value * this.p3.y;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Main.prototype, "factor1", {
+        ///三次贝塞尔曲线
+        set: function (value) {
+            this.ball.x = (1 - value) * (1 - value) * (1 - value) * this.p1.x + 3 * value * (1 - value) * (1 - value) * this.p2.x + 2 * value * value * (1 - value) * this.p3.x + value * value * value * this.p4.x;
+            this.ball.y = (1 - value) * (1 - value) * (1 - value) * this.p1.y + 3 * value * (1 - value) * (1 - value) * this.p2.y + 2 * value * value * (1 - value) * this.p3.y + value * value * value * this.p4.y;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return Main;
 })(egret.DisplayObjectContainer);
 Main.prototype.__class__ = "Main";

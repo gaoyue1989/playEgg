@@ -37,11 +37,11 @@ class EggSprite extends egret.Sprite
     }
 
     /// 鸡蛋动画
-    public eggTween(tempEgg: EggSprite)
+    public eggTween(tempEgg: EggSprite,time:number=5000)
     {
         var tw: egret.Tween = egret.Tween.get(tempEgg);
         tw.to({
-            x:tempEgg.tagetPoint.x,y:tempEgg.tagetPoint.y },5000);
+            x:tempEgg.tagetPoint.x,y:tempEgg.tagetPoint.y },time);
     }
 }
 
