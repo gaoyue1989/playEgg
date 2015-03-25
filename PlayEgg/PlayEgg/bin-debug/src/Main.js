@@ -30,15 +30,10 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-////import p2=p2;
 var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
         _super.call(this);
-        this.p1 = { x: 100, y: 300 };
-        this.p2 = { x: 300, y: 0 };
-        this.p3 = { x: 300, y: 300 };
-        this.p4 = { x: 500, y: 600 };
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
     Main.prototype.onAddToStage = function (event) {
@@ -125,28 +120,6 @@ var Main = (function (_super) {
         //在GUI范围内一律使用addElement等方法替代addChild等方法。
         //Within GUI scope, addChild methods should be replaced by addElement methods.
         this.guiLayer.addElement(button);
-    };
-    Main.prototype.onButtonClick = function (event) {
-        //游戏开始事件
-        var btn = event.target;
-        btn.visible = false;
-        //var egg: EggSprite = new EggSprite();
-        //this.addChild(egg);
-        //this.ball = egg;
-        //egg.tagetPoint = {x: 
-        //100, y:
-        //100
-        //};
-        //this.p1.x = 100
-        //this.p1.y = 100
-        //this.p2.x = 300
-        //this.p2.y = 600
-        //this.p3.x = 500
-        //this.p3.y = 100
-        //this.p4.x = 700
-        //this.p4.y = 600
-        //egret.Tween.get(this).to({ factor: 1 }, 7000);
-        // egg.eggTween(egg);
         // 测试使用物理引擎 P2
         //创建world
         var world = new p2.World();
@@ -158,28 +131,11 @@ var Main = (function (_super) {
         planeBody.displays = [];
         world.addBody(planeBody);
     };
-    Object.defineProperty(Main.prototype, "factor", {
-        get: function () {
-            return 0;
-        },
-        ///二次贝塞尔曲线
-        set: function (value) {
-            this.ball.x = (1 - value) * (1 - value) * this.p1.x + 2 * value * (1 - value) * this.p2.x + value * value * this.p3.x;
-            this.ball.y = (1 - value) * (1 - value) * this.p1.y + 2 * value * (1 - value) * this.p2.y + value * value * this.p3.y;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Main.prototype, "factor1", {
-        ///三次贝塞尔曲线
-        set: function (value) {
-            this.ball.x = (1 - value) * (1 - value) * (1 - value) * this.p1.x + 3 * value * (1 - value) * (1 - value) * this.p2.x + 2 * value * value * (1 - value) * this.p3.x + value * value * value * this.p4.x;
-            this.ball.y = (1 - value) * (1 - value) * (1 - value) * this.p1.y + 3 * value * (1 - value) * (1 - value) * this.p2.y + 2 * value * value * (1 - value) * this.p3.y + value * value * value * this.p4.y;
-        },
-        enumerable: true,
-        configurable: true
-    });
+    Main.prototype.onButtonClick = function (event) {
+        //游戏开始事件
+        var btn = event.target;
+        btn.visible = false;
+    };
     return Main;
 })(egret.DisplayObjectContainer);
 Main.prototype.__class__ = "Main";
-//# sourceMappingURL=Main.js.map

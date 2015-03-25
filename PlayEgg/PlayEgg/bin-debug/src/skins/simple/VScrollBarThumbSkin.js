@@ -31,4 +31,3 @@ var skins;
         VScrollBarThumbSkin.prototype.__class__ = "skins.simple.VScrollBarThumbSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
-//# sourceMappingURL=VScrollBarThumbSkin.js.map

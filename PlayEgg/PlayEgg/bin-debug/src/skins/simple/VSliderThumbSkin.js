@@ -31,4 +31,3 @@ var skins;
         VSliderThumbSkin.prototype.__class__ = "skins.simple.VSliderThumbSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
-//# sourceMappingURL=VSliderThumbSkin.js.map

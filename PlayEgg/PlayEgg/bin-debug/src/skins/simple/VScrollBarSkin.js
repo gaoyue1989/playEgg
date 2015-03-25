@@ -46,4 +46,3 @@ var skins;
         VScrollBarSkin.prototype.__class__ = "skins.simple.VScrollBarSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
-//# sourceMappingURL=VScrollBarSkin.js.map

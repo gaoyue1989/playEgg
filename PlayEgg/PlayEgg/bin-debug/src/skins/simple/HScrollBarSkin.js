@@ -46,4 +46,3 @@ var skins;
         HScrollBarSkin.prototype.__class__ = "skins.simple.HScrollBarSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
-//# sourceMappingURL=HScrollBarSkin.js.map

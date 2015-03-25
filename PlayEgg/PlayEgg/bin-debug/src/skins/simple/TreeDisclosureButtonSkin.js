@@ -46,4 +46,3 @@ var skins;
         TreeDisclosureButtonSkin.prototype.__class__ = "skins.simple.TreeDisclosureButtonSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
-//# sourceMappingURL=TreeDisclosureButtonSkin.js.map
