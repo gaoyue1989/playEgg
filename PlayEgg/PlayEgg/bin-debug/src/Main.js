@@ -30,6 +30,8 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
+////import p2=p2;
+//import p2 = require("./physics");
 var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {

@@ -26,7 +26,8 @@
  */
 
 
-
+////import p2=p2;
+//import p2 = require("./physics");
 class Main extends egret.DisplayObjectContainer
 {
 

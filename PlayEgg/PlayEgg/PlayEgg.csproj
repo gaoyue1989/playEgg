@@ -311,7 +311,7 @@
     <Content Include="libs\core\extension\resource\events\ResourceEvent.js" />
     <Content Include="libs\core\extension\resource\Resource.js" />
     <Content Include="libs\core\jslib\NumberUtils.js" />
-    <Content Include="p2\p2.min.js" />
+    <Content Include="src\p2\p2.min.js" />
     <Content Include="resource\assets\bg.jpg" />
     <Content Include="resource\assets\simple\CheckBox\checkbox-select_disabled.png" />
     <Content Include="resource\assets\simple\CheckBox\checkbox-select_normal.png" />
@@ -423,7 +423,7 @@
     <Content Include="src\skins\simple\VSliderSkin.exml" />
     <Content Include="src\skins\simple\VSliderThumbSkin.exml" />
     <Content Include="libs\core\egret\context\html5.d.json" />
-    <Content Include="p2.json" />
+    <Content Include="physics.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -439,7 +439,7 @@
     <TypeScriptCompile Include="libs\core\extension\resource\res.d.ts" />
     <TypeScriptCompile Include="libs\exml.d.ts" />
     <TypeScriptCompile Include="libs\_references.ts" />
-    <TypeScriptCompile Include="p2\p2.d.ts" />
+    <TypeScriptCompile Include="src\p2\p2.d.ts" />
     <TypeScriptCompile Include="src\AssetAdapter.ts" />
     <TypeScriptCompile Include="src\EggSprite.ts" />
     <TypeScriptCompile Include="src\LoadingUI.ts" />
