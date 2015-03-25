@@ -34,6 +34,7 @@ var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
         _super.call(this);
+        this.factor = 50;
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
     Main.prototype.onAddToStage = function (event) {
@@ -120,21 +121,150 @@ var Main = (function (_super) {
         //在GUI范围内一律使用addElement等方法替代addChild等方法。
         //Within GUI scope, addChild methods should be replaced by addElement methods.
         this.guiLayer.addElement(button);
+    };
+    Main.prototype.onButtonClick = function (event) {
+        var _this = this;
+        //游戏开始事件
+        var btn = event.target;
+        btn.visible = false;
         // 测试使用物理引擎 P2
         //创建world
         egret.Profiler.getInstance().run();
         var world = new p2.World();
+        world.sleepMode = p2.World.BODY_SLEEPING;
         //////创建plane
-        //var planeShape: p2.Plane = new p2.Plane();
-        //var planeBody: p2.Body = new p2.Body();
-        //planeBody.addShape(planeShape);
-        //planeBody.displays = [];
-        //world.addBody(planeBody);
+        var planeShape = new p2.Plane();
+        var planeBody = new p2.Body();
+        planeBody.addShape(planeShape);
+        planeBody.displays = [];
+        world.addBody(planeBody);
+        egret.Ticker.getInstance().register(function (dt) {
+            if (dt < 10) {
+                return;
+            }
+            if (dt > 1000) {
+                return;
+            }
+            world.step(dt / 1000);
+        }, this);
+        this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN, function (e) {
+            _this.addOneBox(world, e);
+        }, this);
     };
-    Main.prototype.onButtonClick = function (event) {
-        //游戏开始事件
-        var btn = event.target;
-        btn.visible = false;
+    Main.prototype.addOneBox = function (world, e) {
+        var self = this;
+        var display;
+        var boxBody;
+        var boxShape;
+        var positionX = Math.floor(e.stageX / this.factor);
+        var positionY = Math.floor((egret.MainContext.instance.stage.stageHeight - e.stageY) / this.factor);
+        //添加圆形刚体
+        boxShape = new p2.Circle(1);
+        boxBody = new p2.Body({ mass: 1, position: [positionX, positionY] });
+        boxBody.addShape(boxShape);
+        world.addBody(boxBody);
+        display = self.createBitmapByName("circle");
+        display.width = boxShape.radius * 2 * this.factor;
+        display.height = boxShape.radius * 2 * this.factor;
+        display.anchorX = display.anchorY = .5;
+        boxBody.displays = [display];
+        self.addChild(display);
+    };
+    //public get factor(): number {
+    //    return 0;
+    //}
+    /////二次贝塞尔曲线
+    //public set factor(value: number) {
+    //    this.ball.x = (1 - value) * (1 - value) * this.p1.x + 2 * value * (1 - value) * this.p2.x + value * value * this.p3.x;
+    //    this.ball.y = (1 - value) * (1 - value) * this.p1.y + 2 * value * (1 - value) * this.p2.y + value * value * this.p3.y;
+    //}
+    /////三次贝塞尔曲线
+    //public set factor1(value: number) {
+    //    this.ball.x = (1 - value) * (1 - value) * (1 - value) * this.p1.x + 3 * value * (1 - value) * (1 - value) * this.p2.x + 2 * value * value * (1 - value) * this.p3.x + value * value * value * this.p4.x;
+    //    this.ball.y = (1 - value) * (1 - value) * (1 - value) * this.p1.y + 3 * value * (1 - value) * (1 - value) * this.p2.y + 2 * value * value * (1 - value) * this.p3.y + value * value * value * this.p4.y;
+    //}
+    /**
+* debug模式，使用图形绘制
+*/
+    Main.prototype.debug = function (world) {
+        var factor = 50;
+        var canvas = document.createElement("canvas");
+        var stage = egret.MainContext.instance.stage;
+        var stageWidth = stage.stageWidth;
+        var stageHeight = stage.stageHeight;
+        canvas.width = stageWidth;
+        canvas.height = stageHeight;
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "rgba(" + 255 + "," + 255 + "," + 0 + "," + 1 + ")";
+        ctx.strokeStyle = "rgba(" + 255 + "," + 0 + "," + 0 + "," + 1 + ")";
+        ctx.lineWidth = 1;
+        var rendererContext = egret.MainContext.instance.rendererContext;
+        var f = rendererContext.onRenderFinish;
+        rendererContext.onRenderFinish = function () {
+            ctx.clearRect(0, 0, stageWidth, stageHeight);
+            var l = world.bodies.length;
+            for (var i = 0; i < l; i++) {
+                var boxBody = world.bodies[i];
+                if (boxBody.sleepState == p2.Body.SLEEPING) {
+                    ctx.globalAlpha = 0.5;
+                }
+                else {
+                    ctx.globalAlpha = 1;
+                }
+                for (var j = 0; j < boxBody.shapes.length; j++) {
+                    var boxShape = boxBody.shapes[j];
+                    if (boxShape instanceof p2.Rectangle) {
+                        var x = (boxBody.position[0] + +boxBody.shapeOffsets[j][0]) * factor;
+                        var y = stageHeight - (boxBody.position[1] + +boxBody.shapeOffsets[j][1]) * factor;
+                        var w = boxShape.width * factor;
+                        var h = boxShape.height * factor;
+                        var matrix = egret.Matrix.identity.identity();
+                        matrix.prependTransform(x, y, 1, 1, 360 - boxBody.angle * 180 / Math.PI, 0, 0, 0, 0);
+                        ctx.save();
+                        ctx.setTransform(matrix.a, matrix.b, matrix.c, matrix.d, matrix.tx, matrix.ty);
+                        ctx.beginPath();
+                        ctx.rect(-boxShape.width / 2 * factor, -boxShape.height / 2 * factor, w, h);
+                        ctx.fill();
+                        ctx.closePath();
+                        ctx.restore();
+                    }
+                    else if (boxShape instanceof p2.Plane) {
+                        ctx.save();
+                        ctx.setTransform(1, 0, 0, 1, 0, stageHeight - (boxBody.position[1] + boxBody.shapeOffsets[j][1]) * factor);
+                        ctx.beginPath();
+                        ctx.moveTo(0, 0);
+                        ctx.lineTo(stageWidth, 0);
+                        ctx.stroke();
+                        ctx.closePath();
+                        ctx.restore();
+                    }
+                    else if (boxShape instanceof p2.Circle) {
+                        var x = (boxBody.position[0] + boxBody.shapeOffsets[j][0]) * factor;
+                        var y = stageHeight - (boxBody.position[1] + boxBody.shapeOffsets[j][1]) * factor;
+                        var matrix = egret.Matrix.identity.identity();
+                        matrix.prependTransform(x, y, 1, 1, 360 - boxBody.angle * 180 / Math.PI, 0, 0, 0, 0);
+                        ctx.save();
+                        ctx.setTransform(matrix.a, matrix.b, matrix.c, matrix.d, matrix.tx, matrix.ty);
+                        ctx.beginPath();
+                        ctx.arc(0, 0, boxShape.radius * factor, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.closePath();
+                        ctx.restore();
+                    }
+                }
+            }
+            rendererContext["_cacheCanvasContext"].drawImage(canvas, 0, 0, stageWidth, stageHeight, 0, 0, stageWidth, stageHeight);
+            f.call(rendererContext);
+        };
+    };
+    /**
+    * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
+    */
+    Main.prototype.createBitmapByName = function (name) {
+        var result = new egret.Bitmap();
+        var texture = RES.getRes(name);
+        result.texture = texture;
+        return result;
     };
     return Main;
 })(egret.DisplayObjectContainer);
