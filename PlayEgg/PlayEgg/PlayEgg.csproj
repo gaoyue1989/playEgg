@@ -373,7 +373,6 @@
     <Content Include="resource\assets\simple\VSlider\VSlider_fill.png" />
     <Content Include="resource\assets\simple\VSlider\VSlider_thumb.png" />
     <Content Include="resource\assets\simple\VSlider\VSlider_track.png" />
-    <Content Include="libs\core\egret\p2\p2.min.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
