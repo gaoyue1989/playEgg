@@ -422,7 +422,6 @@
     <Content Include="src\skins\simple\VSliderSkin.exml" />
     <Content Include="src\skins\simple\VSliderThumbSkin.exml" />
     <Content Include="libs\core\egret\context\html5.d.json" />
-    <Content Include="physics.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
