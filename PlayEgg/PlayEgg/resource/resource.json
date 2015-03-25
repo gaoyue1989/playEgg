@@ -319,10 +319,12 @@
 		"type":"image",
 		"url":"assets/simple/VScrollBar/vscrolltrack.png"
 	},
-	{
-		"name":"textbox_png",
-		"scale9grid":"1,1,143,21",
-		"type":"image",
-		"url":"assets/simple/TextInput/textbox.png"
-	}]
+        {
+            "name": "textbox_png",
+            "scale9grid": "1,1,143,21",
+            "type": "image",
+            "url": "assets/simple/TextInput/textbox.png"
+        },
+        {"name":"circle","type":"image","url":"assets/circle.png"}
+	]
 }

@@ -313,6 +313,7 @@
     <Content Include="libs\core\extension\resource\Resource.js" />
     <Content Include="libs\core\jslib\NumberUtils.js" />
     <Content Include="resource\assets\bg.jpg" />
+    <Content Include="resource\assets\circle.png" />
     <Content Include="resource\assets\simple\CheckBox\checkbox-select_disabled.png" />
     <Content Include="resource\assets\simple\CheckBox\checkbox-select_normal.png" />
     <Content Include="resource\assets\simple\CheckBox\checkbox-select_over.png" />
