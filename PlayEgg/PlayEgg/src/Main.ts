@@ -150,6 +150,10 @@ class Main extends egret.DisplayObjectContainer
     private factor: number = 50;
 
     private ball: EggSprite;
+
+
+
+
     private onButtonClick(event: egret.TouchEvent): void
     {
         //游戏开始事件
@@ -161,38 +165,72 @@ class Main extends egret.DisplayObjectContainer
 
         egret.Profiler.getInstance().run();
 
-        var world: p2.World = new p2.World();
-        world.sleepMode = p2.World.BODY_SLEEPING;
-       
-
-        //////创建plane
-        var planeShape: p2.Plane = new p2.Plane();
-        var planeBody: p2.Body = new p2.Body();
-        planeBody.addShape(planeShape);
-        planeBody.displays = [];
-        world.addBody(planeBody);
+        //var world: p2.World = new p2.World();
+        //world.sleepMode = p2.World.BODY_SLEEPING;
 
 
-        egret.Ticker.getInstance().register((dt) =>
+        ////////创建plane
+        //var planeShape: p2.Plane = new p2.Plane();
+        //var planeBody: p2.Body = new p2.Body();
+        //planeBody.addShape(planeShape);
+        //planeBody.displays = [];
+        //world.addBody(planeBody);
+
+        this.ball = new EggSprite();
+        this.addChild(this.ball);
+
+        //  鸡蛋的动画已经实现了，每次到达目的地后重新计算下一次目的地
+        var tm: egret.Timer = new egret.Timer(900);
+        tm.addEventListener(egret.TimerEvent.TIMER, (e) =>
         {
-            if (dt < 10)
-            {
-                return;
-            }
-            if (dt > 1000)
-            {
-                return;
-            }
-            world.step(dt / 1000);
+            var x: number = Math.random() * 700+ 50;
+            var y: number = Math.random() * 400 + 30;
+            this.ball.tagetPoint = { x: x, y: y };
+            this.ball.eggTween(this.ball);
         }, this);
-
-        this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN,(e) =>
-        {
-            this.addOneBox(world, e);
-        }, this);
+        tm.start();
+    }
 
 
 
+
+//    egret.Ticker.getInstance().register((dt) =>
+    //    {
+    //        if (dt < 5000)
+    //        {
+    //            return;
+    //        }
+    //        if (dt > 10000)
+    //        {
+    //            return;
+    //        }
+    //        //world.step(dt / 1000);
+    //    }, this);
+
+    //    //this.stage.addEventListener(egret.TouchEvent.TOUCH_BEGIN,(e) =>
+    //    //{
+    //    //    this.addOneBox(world, e);
+    //    //}, this);
+
+    //    // 注册 物体监听事件
+
+    //    this.stage.addEventListener(egret.Event.ENTER_FRAME, (e) =>
+    //    {
+    //        this.eggTweenHander(e);
+    //    }, this);
+    //}
+
+
+
+
+
+
+    private eggTweenHander(evt: egret.Event):void
+    {
+        var x: number = Math.random() * 200 + 100;
+        var y: number = Math.random() * 300 + 50;
+        this.ball.tagetPoint = { x: x, y: y };
+        this.ball.eggTween(this.ball);
     }
 
 

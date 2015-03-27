@@ -37,12 +37,27 @@ class EggSprite extends egret.Sprite
     }
 
     /// 鸡蛋动画
-    public eggTween(tempEgg: EggSprite)
+    public eggTween(tempEgg: EggSprite,timer:number=1000)
     {
         var tw: egret.Tween = egret.Tween.get(tempEgg);
         tw.to({
-            x:tempEgg.tagetPoint.x,y:tempEgg.tagetPoint.y },5000);
+            x:tempEgg.tagetPoint.x,y:tempEgg.tagetPoint.y },timer);
     }
+
+
+    /// 写的一个通用更新方法，还没有测试，暂时不建议使用
+    private updateSprite(delay:number=1000,callBack:any=null)
+    {
+        var tm: egret.Timer = new egret.Timer(delay);
+        tm.addEventListener(egret.TimerEvent.TIMER, (e) =>
+        {
+            if (callBack)
+            //callBack.call(this);
+                callBack();
+        }, this);
+        tm.start();
+    }
+
 }
 
 
