@@ -375,6 +375,8 @@
     <Content Include="resource\assets\simple\VSlider\VSlider_thumb.png" />
     <Content Include="resource\assets\simple\VSlider\VSlider_track.png" />
     <Content Include="src\p2\p2.min.js" />
+    <Content Include="egret.cmd" />
+    <None Include="src\physics.json" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -424,7 +426,6 @@
     <Content Include="src\skins\simple\VSliderSkin.exml" />
     <Content Include="src\skins\simple\VSliderThumbSkin.exml" />
     <Content Include="libs\core\egret\context\html5.d.json" />
-    <Content Include="physics.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
